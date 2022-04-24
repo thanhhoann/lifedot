@@ -4,7 +4,7 @@ import NavBar from "../components/UI/NavBar";
 import axios from "axios";
 import { Input, Button, Textarea } from "@nextui-org/react";
 import { DateTime } from "luxon";
-import  Router } from "next/router";
+import  Router  from "next/router";
 import { useRecoilState, useRecoilValue } from "recoil";
 import { currentPointState } from "../atoms";
 
@@ -82,7 +82,7 @@ export default function Challenges({ data_challenges }) {
             />
 
             <div className="form-input__sub">
-              <h1 className="form-title">What's your profession ?</h1>
+              <h1 className="form-title">Whats your profession ?</h1>
               <Input
                 autoFocus
                 type="text"

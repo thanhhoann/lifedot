@@ -49,7 +49,7 @@ export default function Posts({ data_posts }) {
       <Layout>
         <NavBar />
         <div className="form">
-          <h1 className="form-title">What's on your mind ?</h1>
+          <h1 className="form-title">Whats on your mind ?</h1>
           <form className="form-input" onSubmit={submitHandler}>
             <Textarea
               bordered
