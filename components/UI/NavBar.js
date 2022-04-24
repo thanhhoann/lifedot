@@ -13,13 +13,13 @@ export default function NavBar() {
         <div className="nav__links">
           <div>
             <Link href="/posts">
-              <h2 className="posts__link link">Post</h2>
+              <h2 className="posts__link link">Posts</h2>
             </Link>
           </div>
 
           <div>
             <Link href="/challenges">
-              <h2 className="challenges__link link">Challenge</h2>
+              <h2 className="challenges__link link">Challenges</h2>
             </Link>
           </div>
         </div>

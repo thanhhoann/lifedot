@@ -2,6 +2,7 @@ import PostInput from "../components/Post/PostInput";
 import { useEffect, useState } from "react";
 import Layout from "../components/UI/Layout";
 import NavBar from "../components/UI/NavBar";
+import Link from "next/link";
 
 export default function Home({ data_posts, data_challenges }) {
   const [posts, setPost] = useState([]);
@@ -16,6 +17,7 @@ export default function Home({ data_posts, data_challenges }) {
         time: data_posts[key].time,
       });
     }
+    while (loadedPosts.length > 2) loadedPosts.length--;
     setPost(loadedPosts);
 
     const loadedChallenges = [];
@@ -37,9 +39,8 @@ export default function Home({ data_posts, data_challenges }) {
         <NavBar />
 
         <div>
-          <h1>Posts</h1>
-
-          <div className="posts">
+          <h1 className="title">POSTS</h1>
+          <div className="posts__home">
             {posts.map((post, index) => (
               <div className="post" key={index}>
                 <h1>{post.content}</h1>
@@ -50,11 +51,17 @@ export default function Home({ data_posts, data_challenges }) {
               </div>
             ))}
           </div>
+          <div className="link__container">
+            <Link href="/posts">
+              <div className="link">
+                <h1>See more</h1>
+              </div>
+            </Link>
+          </div>
         </div>
 
         <div>
-          <h1>Challenges</h1>
-
+          <h1 className="title">CHALLLENGES</h1>
           <div className="challenges">
             {challenges.map((challenge, index) => (
               <div className="challenge" key={index}>
@@ -71,6 +78,13 @@ export default function Home({ data_posts, data_challenges }) {
                 <div className="cta">DO</div>
               </div>
             ))}
+          </div>
+          <div className="link__container">
+            <Link href="/challenges">
+              <div className="link">
+                <h1>See more</h1>
+              </div>
+            </Link>
           </div>
         </div>
       </Layout>

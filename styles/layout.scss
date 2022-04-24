@@ -2,8 +2,19 @@ $margin_form: 4rem;
 
 .layout {
   width: 100vw;
-  height: 100vh;
+  height: auto;
   flex-direction: column;
+
+  .title {
+    font-size: 3rem;
+    text-align: center;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    letter-spacing: 4px;
+  }
+  .challenges-title {
+    margin-top: 5rem;
+  }
 
   .link {
     cursor: pointer;

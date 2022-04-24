@@ -1,16 +1,31 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Layout from "../components/UI/Layout";
 import NavBar from "../components/UI/NavBar";
 import axios from "axios";
 import { Input, Button, Textarea } from "@nextui-org/react";
 import { DateTime } from "luxon";
+import { Router } from "next/router";
 
-export default function challenges() {
+export default function Challenges({ data_challenges }) {
   const [challengeContent, setChallengeContent] = useState("");
   const [challenges, setChallenge] = useState([]);
 
   const [tag, setTag] = useState("");
   const [points, setPoints] = useState("");
+
+  useEffect(() => {
+    const loadedChallenges = [];
+    for (const key in data_challenges) {
+      loadedChallenges.push({
+        content: data_challenges[key].content,
+        id: data_challenges[key].id,
+        time: data_challenges[key].time,
+        tag: data_challenges[key].tag,
+        points: data_challenges[key].points,
+      });
+      setChallenge(loadedChallenges);
+    }
+  }, []);
 
   const submitHandler = async (e) => {
     e.preventDefault();
@@ -37,6 +52,7 @@ export default function challenges() {
     setChallengeContent("");
     setTag("");
     setPoints("");
+    Router.reload(window.location.pathname);
   };
 
   return (
@@ -97,7 +113,42 @@ export default function challenges() {
             </div>
           </form>
         </div>
+
+        <div>
+          <h1 className="title">CHALLLENGES</h1>
+          <div className="challenges">
+            {challenges.map((challenge, index) => (
+              <div className="challenge" key={index}>
+                <div>
+                  <h1 className="content">{challenge.content}</h1>
+                  <h2 className="tag">{challenge.tag}</h2>
+                  <h2 className="time">
+                    {challenge.time.day}/{challenge.time.month}/
+                    {challenge.time.year} at {challenge.time.hour}:
+                    {challenge.time.minute}
+                  </h2>
+                </div>
+                <div className="points">+ {challenge.points} points</div>
+                <div className="cta">DO</div>
+              </div>
+            ))}
+          </div>
+        </div>
       </Layout>
     </>
   );
+}
+
+export async function getStaticProps() {
+  const res_challenges = await fetch(
+    "https://lifedot-65872-default-rtdb.asia-southeast1.firebasedatabase.app/challenges.json"
+  );
+
+  const data_challenges = await res_challenges.json();
+
+  return {
+    props: {
+      data_challenges,
+    },
+  };
 }
