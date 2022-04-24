@@ -1,0 +1,56 @@
+.challenges {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+
+  .challenge {
+    border: 2px solid black;
+    width: 90vw;
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    margin: 1rem;
+    border-radius: 10px;
+  }
+
+  .content {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    font-size: 2rem;
+  }
+
+  .tag {
+    margin: 10px;
+    background-color: black;
+    color: white;
+    padding: 10px;
+    width: 50vw;
+  }
+
+  .points {
+    font-size: 3rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid black;
+    padding: 10px;
+    border-radius: 10px;
+  }
+
+  .cta {
+    cursor: pointer;
+    font-size: 3rem;
+    border: 1px solid black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 10vw;
+    border-radius: 10px;
+  }
+  .cta:hover {
+    background-color: black;
+    color: white;
+  }
+}

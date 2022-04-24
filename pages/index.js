@@ -24,6 +24,8 @@ export default function Home({ data_posts, data_challenges }) {
         content: data_challenges[key].content,
         id: data_challenges[key].id,
         time: data_challenges[key].time,
+        tag: data_challenges[key].tag,
+        points: data_challenges[key].points,
       });
       setChallenge(loadedChallenges);
     }
@@ -53,15 +55,20 @@ export default function Home({ data_posts, data_challenges }) {
         <div>
           <h1>Challenges</h1>
 
-          <div className="posts">
+          <div className="challenges">
             {challenges.map((challenge, index) => (
-              <div className="post" key={index}>
-                <h1>{challenge.content}</h1>
-                <h2 className="time">
-                  {challenge.time.day}/{challenge.time.month}/
-                  {challenge.time.year} at {challenge.time.hour}:
-                  {challenge.time.minute}
-                </h2>
+              <div className="challenge" key={index}>
+                <div>
+                  <h1 className="content">{challenge.content}</h1>
+                  <h2 className="tag">{challenge.tag}</h2>
+                  <h2 className="time">
+                    {challenge.time.day}/{challenge.time.month}/
+                    {challenge.time.year} at {challenge.time.hour}:
+                    {challenge.time.minute}
+                  </h2>
+                </div>
+                <div className="points">+ {challenge.points} points</div>
+                <div className="cta">DO</div>
               </div>
             ))}
           </div>

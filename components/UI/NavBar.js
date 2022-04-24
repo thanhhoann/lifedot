@@ -13,25 +13,27 @@ export default function NavBar() {
         <div className="nav__links">
           <div>
             <Link href="/posts">
-              <h2 className="posts__link link">Posts</h2>
+              <h2 className="posts__link link">Post</h2>
             </Link>
           </div>
 
           <div>
             <Link href="/challenges">
-              <h2 className="challenges__link link">Challenges</h2>
+              <h2 className="challenges__link link">Challenge</h2>
             </Link>
           </div>
         </div>
 
-        <Avatar
-          pointer="true"
-          size="lg"
-          src="https://i.pravatar.cc/150?u=a042581f4e29026024d"
-          color="primary"
-          bordered
-          squared
-        />
+        <Link href="/profile">
+          <Avatar
+            pointer="true"
+            size="lg"
+            src="https://i.pravatar.cc/150?u=a042581f4e29026024d"
+            color="primary"
+            bordered
+            squared
+          />
+        </Link>
       </div>
     </>
   );

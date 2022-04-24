@@ -2,6 +2,7 @@ import "../styles/globals.css";
 import "../styles/Home.scss";
 import "../styles/layout.scss";
 import "../styles/post.scss";
+import "../styles/challenges.scss";
 
 import "../utils/reset.css";
 

@@ -2,7 +2,7 @@ import { useState } from "react";
 import Layout from "../components/UI/Layout";
 import NavBar from "../components/UI/NavBar";
 import axios from "axios";
-import { Input, Button } from "@nextui-org/react";
+import { Input, Button, Textarea } from "@nextui-org/react";
 import { DateTime } from "luxon";
 
 export default function Posts() {
@@ -35,16 +35,14 @@ export default function Posts() {
       <Layout>
         <NavBar />
         <div className="form">
-          <h1 className="form-title">What's your wish today ?</h1>
-
+          <h1 className="form-title">What's on your mind ?</h1>
           <form className="form-input" onSubmit={submitHandler}>
-            <Input
-              autoFocus
-              type="text"
-              value={postContent}
-              bordered="true"
+            <Textarea
+              bordered
+              color="black"
               size="xl"
               width="50vw"
+              value={postContent}
               onChange={(e) => setPostContent(e.target.value)}
             />
 
