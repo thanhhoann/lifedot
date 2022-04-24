@@ -1,7 +1,11 @@
 import { Avatar } from "@nextui-org/react";
 import Link from "next/link";
+import { useRecoilValue } from "recoil";
+import { currentPointState } from "../../atoms";
 
 export default function NavBar() {
+  const points = useRecoilValue(currentPointState);
+
   return (
     <>
       <div className="nav">
@@ -22,6 +26,13 @@ export default function NavBar() {
               <h2 className="challenges__link link">Challenges</h2>
             </Link>
           </div>
+        </div>
+
+        <div>
+          <h1>
+            You have : <span style={{ fontStyle: "bold" }}>{points}</span>{" "}
+            points
+          </h1>
         </div>
 
         <Link href="/profile">

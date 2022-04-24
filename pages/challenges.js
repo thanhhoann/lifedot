@@ -4,7 +4,9 @@ import NavBar from "../components/UI/NavBar";
 import axios from "axios";
 import { Input, Button, Textarea } from "@nextui-org/react";
 import { DateTime } from "luxon";
-import { Router } from "next/router";
+import  Router } from "next/router";
+import { useRecoilState, useRecoilValue } from "recoil";
+import { currentPointState } from "../atoms";
 
 export default function Challenges({ data_challenges }) {
   const [challengeContent, setChallengeContent] = useState("");
@@ -12,6 +14,12 @@ export default function Challenges({ data_challenges }) {
 
   const [tag, setTag] = useState("");
   const [points, setPoints] = useState("");
+
+  const [currPoints, setCurrPoints] = useRecoilState(currentPointState);
+
+  const DO_handler = (points) => {
+    setCurrPoints((currPoints) => Number(currPoints) + Number(points));
+  };
 
   useEffect(() => {
     const loadedChallenges = [];
@@ -22,6 +30,7 @@ export default function Challenges({ data_challenges }) {
         time: data_challenges[key].time,
         tag: data_challenges[key].tag,
         points: data_challenges[key].points,
+        isDone: false,
       });
       setChallenge(loadedChallenges);
     }
@@ -129,7 +138,12 @@ export default function Challenges({ data_challenges }) {
                   </h2>
                 </div>
                 <div className="points">+ {challenge.points} points</div>
-                <div className="cta">DO</div>
+                <div
+                  className="cta"
+                  onClick={() => DO_handler(challenge.points)}
+                >
+                  DO
+                </div>
               </div>
             ))}
           </div>

@@ -6,8 +6,22 @@ import "../styles/challenges.scss";
 
 import "../utils/reset.css";
 
+import {
+  RecoilRoot,
+  atom,
+  selector,
+  useRecoilState,
+  useRecoilValue,
+} from "recoil";
+
 function MyApp({ Component, pageProps }) {
-  return <Component {...pageProps} />;
+  return (
+    <>
+      <RecoilRoot>
+        <Component {...pageProps} />
+      </RecoilRoot>
+    </>
+  );
 }
 
 export default MyApp;

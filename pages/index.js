@@ -3,10 +3,13 @@ import { useEffect, useState } from "react";
 import Layout from "../components/UI/Layout";
 import NavBar from "../components/UI/NavBar";
 import Link from "next/link";
+import { useRecoilState, useRecoilValue } from "recoil";
+import { currentPointState } from "../atoms";
 
 export default function Home({ data_posts, data_challenges }) {
   const [posts, setPost] = useState([]);
   const [challenges, setChallenge] = useState([]);
+  const [currPoints, setCurrPoints] = useRecoilState(currentPointState);
 
   useEffect(() => {
     const loadedPosts = [];
@@ -29,9 +32,14 @@ export default function Home({ data_posts, data_challenges }) {
         tag: data_challenges[key].tag,
         points: data_challenges[key].points,
       });
+      while (loadedChallenges.length > 3) loadedChallenges.length--;
       setChallenge(loadedChallenges);
     }
   }, []);
+
+  const DO_handler = (points, id) => {
+    setCurrPoints((currPoints) => Number(currPoints) + Number(points));
+  };
 
   return (
     <>
@@ -75,7 +83,12 @@ export default function Home({ data_posts, data_challenges }) {
                   </h2>
                 </div>
                 <div className="points">+ {challenge.points} points</div>
-                <div className="cta">DO</div>
+                <div
+                  className="cta"
+                  onClick={() => DO_handler(challenge.points, challenge.id)}
+                >
+                  DO
+                </div>
               </div>
             ))}
           </div>
